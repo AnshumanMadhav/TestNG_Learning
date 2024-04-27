@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Rest_Assured_Assignment_002"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="9.207">
+    <properties></properties>
+
+
+
+            <testcase
+                name="post_and_get_employee_details"
+                time="9.207"
+                classname="Rest_Assured_Assignments.Assignment_002">
+            </testcase>
+</testsuite>

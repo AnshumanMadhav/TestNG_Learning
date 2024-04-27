@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Rest Assured Learning">
+    <test name="Celsius to Fahrenheit Validation" >
+        <parameter name="celsius_to_fahrenheit_url" value="https://www.w3schools.com/xml/tempconvert.asmx"></parameter>
+        <parameter name="C_Temp" value="5"></parameter>
+        <parameter name="F_Temp" value="41"></parameter>
+        <classes>
+            <class name="Celsius_to_Fahreheit.Celsius_to_Fahrenheit" />
+        </classes>
+    </test>
+</suite>

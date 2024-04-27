@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="E2E Validation Report">
+    <test name="E2E User Details Validation">
+        <classes>
+            <class name="New_User.User_Details_e2e" />
+        </classes>
+    </test>
+</suite>

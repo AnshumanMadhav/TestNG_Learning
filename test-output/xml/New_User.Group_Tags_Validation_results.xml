@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Group Execution Validation"
+           tests="4"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.410">
+    <properties></properties>
+
+
+
+            <testcase
+                name="test_another_one_101"
+                time="0.000"
+                classname="New_User.Group_Tags_Validation">
+            </testcase>
+            <testcase
+                name="test_another_one_100"
+                time="0.001"
+                classname="New_User.Group_Tags_Validation">
+            </testcase>
+            <testcase
+                name="test_another_one"
+                time="0.000"
+                classname="New_User.Group_Tags_Validation">
+            </testcase>
+            <testcase
+                name="create_new_user"
+                time="0.409"
+                classname="New_User.Group_Tags_Validation">
+            </testcase>
+</testsuite>

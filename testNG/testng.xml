@@ -1,0 +1,40 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Rest Assured Learning" parallel="methods" thread-count="2">
+    <test name="Create User Details" >
+        <parameter name="userCreationURL" value="https://reqres.in/api/users"></parameter>
+        <parameter name="SSN_No" value = "1144123456"></parameter>
+        <parameter name="userName" value = "Rachin"></parameter>
+        <parameter name="celsius_to_fahrenheit_url" value="https://www.w3schools.com/xml/tempconvert.asmx"></parameter>
+        <parameter name="C_Temp" value="5"></parameter>
+        <parameter name="F_Temp" value="41"></parameter>
+        <parameter name="library_book_url" value="https://chercher.tech/sample/api/books.xml"></parameter>
+        <parameter name="Book_Category" value="children"></parameter>
+        <parameter name="Book_Title" value="Harry Potter"></parameter>
+        <parameter name="Book_Author" value="J K. Rowling"></parameter>
+        <parameter name="Year" value="2005"></parameter>
+        <parameter name="Price" value="29.99"></parameter>
+
+        <classes>
+            <class name="New_User.create_new_user" />
+        </classes>
+    </test>
+    <test name="Group Execution Validation">
+        <parameter name="userCreationURL" value="https://reqres.in/api/users"></parameter>
+        <parameter name="SSN_No" value = "1177888456"></parameter>
+        <parameter name="userName" value = "Rahul"></parameter>
+
+        <groups>
+            <run>
+                <include name="smoke"></include>
+                <include name="regression"></include>
+                <include name="e2e"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="New_User.Group_Tags_Validation" />
+        </classes>
+
+    </test>
+
+</suite>

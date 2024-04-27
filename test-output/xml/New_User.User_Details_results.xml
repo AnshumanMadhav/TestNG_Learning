@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Get user details"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="2.575">
+    <properties></properties>
+
+
+
+            <testcase
+                name="get_user_details"
+                time="2.575"
+                classname="New_User.User_Details">
+            </testcase>
+</testsuite>

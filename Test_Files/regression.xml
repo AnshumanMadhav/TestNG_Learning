@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression Validation Report">
+    <test name="Regression User Details Validation">
+        <classes>
+            <class name="New_User.User_Details_regression" />
+        </classes>
+    </test>
+</suite>

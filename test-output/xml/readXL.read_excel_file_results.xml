@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestNG_RestAssured"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.666">
+    <properties></properties>
+
+
+
+            <testcase
+                name="read_and_print_simple_xl"
+                time="0.666"
+                classname="readXL.read_excel_file">
+            </testcase>
+</testsuite>

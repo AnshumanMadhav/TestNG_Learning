@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Create User Details"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="3.892">
+    <properties></properties>
+
+
+
+            <testcase
+                name="test_class"
+                time="1.949"
+                classname="New_User.create_new_user">
+            </testcase>
+            <testcase
+                name="create_a_new_user"
+                time="1.943"
+                classname="New_User.create_new_user">
+            </testcase>
+</testsuite>
