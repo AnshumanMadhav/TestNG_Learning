@@ -7,8 +7,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static io.restassured.RestAssured.get;
@@ -24,12 +27,10 @@ public class Workshop
  Response get_response;
  String get_url = "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
 
- public static void main(String[] args)
- {
+ public static void main(String[] args) throws IOException {
         Workshop wk = new Workshop();
         wk.get_population_details_from_api();
-        System.out.println("**** RESPONSE FROM XL ****");
-        //wk.get_population_details_from_xl();
+        wk.get_population_details_from_xl();
      // Comment
  }
  public void get_population_details_from_api()
@@ -44,34 +45,24 @@ public class Workshop
        System.out.println("Year " +year+ " had population " +population);
      }
  }
- public void get_population_details_from_xl(String columnName)
- {
-   String data = null;
-   try
-   {
+ public void get_population_details_from_xl() throws IOException {
+
+    System.out.println("**** RESPONSE FROM XL ****");
     String XLFilePath = "C:/Users/anshumanm/Downloads/Population_Details.xlsx";
     FileInputStream myxlfile = new FileInputStream(XLFilePath);
-    Workbook workbook = new XSSFWorkbook(myxlfile);
-    Sheet sheet = workbook.getSheet("Sheet1");
+    XSSFWorkbook workbook = new XSSFWorkbook(myxlfile);
+    XSSFSheet sheet = workbook.getSheetAt(0);
     int last_row = sheet.getLastRowNum();
-    for (int i =1;i<=last_row;i++)
-    {
-      Row row = sheet.getRow(i);
-      int last_cell = row.getLastCellNum();
-      Cell cell = row.getCell(0);
-      String runtimeTCName = cell.getStringCellValue();
+        for (Row row : sheet)
+        {
+            if (row.getRowNum() != 0)
+            {
+                int year = (int) row.getCell(0).getNumericCellValue();
+                int population = (int) row.getCell(1).getNumericCellValue();
+                System.out.println("Year " +year+ " had population " +population);
+            }
 
-      for (int j =0; j< last_cell; j++)
-      {
-       // Cell cell = row.getCell(j);
-        data = sheet.getRow(i).getCell(j).toString();
-        System.out.println("The XL Value is:" +data);
-      }
-    }
-   }
-   catch (Exception e)
-   {
-    e.printStackTrace();
-   }
+        }
+
  }
 }
