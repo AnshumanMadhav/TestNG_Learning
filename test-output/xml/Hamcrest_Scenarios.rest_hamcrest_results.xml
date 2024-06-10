@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestNG_RestAssured"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="2.902">
+    <properties></properties>
+
+
+
+            <testcase
+                name="resres_test_First_POST_Call"
+                time="2.902"
+                classname="Hamcrest_Scenarios.rest_hamcrest">
+            </testcase>
+</testsuite>

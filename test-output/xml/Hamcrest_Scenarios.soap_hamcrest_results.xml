@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestNG_RestAssured"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="2.348">
+    <properties></properties>
+
+
+
+            <testcase
+                name="validate_book_soap_api_response"
+                time="2.348"
+                classname="Hamcrest_Scenarios.soap_hamcrest">
+            </testcase>
+</testsuite>

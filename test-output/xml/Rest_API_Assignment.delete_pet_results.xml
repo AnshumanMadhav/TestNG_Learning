@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Delete_Response_Validation"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="63.379">
+    <properties></properties>
+
+
+
+            <testcase
+                name="delete_response_validation"
+                time="63.379"
+                classname="Rest_API_Assignment.delete_pet">
+            </testcase>
+</testsuite>

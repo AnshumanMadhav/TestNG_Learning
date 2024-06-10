@@ -23,5 +23,12 @@ public class RegresJsonBody {
                 "</soap12:Envelope>";
         return request_body_001;
     }
+    public String User_Job(String name, String job) {
+        String body = "{" +
+                "    \"name\": \"" +name+ "\"," +
+                "    \"job\": \""+job+"\"" +
+                "}";
+        return body;
+    }
 }
 

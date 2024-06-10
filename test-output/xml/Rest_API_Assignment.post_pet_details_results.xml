@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Post_Response_Validation"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="34.369">
+    <properties></properties>
+
+
+
+            <testcase
+                name="post_response_validation"
+                time="34.369"
+                classname="Rest_API_Assignment.post_pet_details">
+            </testcase>
+</testsuite>

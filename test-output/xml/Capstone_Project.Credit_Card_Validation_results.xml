@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Credit Details Validation"
+           tests="3"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="30.212">
+    <properties></properties>
+
+
+
+            <testcase
+                name="validate_credit_card_details"
+                time="29.841"
+                classname="Capstone_Project.Credit_Card_Validation">
+            </testcase>
+            <testcase
+                name="insert_credit_card_details"
+                time="0.182"
+                classname="Capstone_Project.Credit_Card_Validation">
+            </testcase>
+            <testcase
+                name="insert_credit_card_and_pan"
+                time="0.189"
+                classname="Capstone_Project.Credit_Card_Validation">
+            </testcase>
+</testsuite>
