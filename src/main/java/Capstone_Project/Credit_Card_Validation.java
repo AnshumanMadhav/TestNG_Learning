@@ -56,8 +56,7 @@ public void report_and_db_setup() throws SQLException {
 @Test(priority = 1)
 public void insert_credit_card_details() throws SQLException, IOException
 {
- System.out.println("Insert Credit Card Validation!!");
- //connection = DriverManager.getConnection(url,user,password);
+ System.out.println("Inserting Credit Card Details in DB.");
  Statement stmt = connection.createStatement();
  FileInputStream fis = new FileInputStream(new File("C:/Users/anshumanm/OneDrive - Maveric Systems Limited/Desktop/API TESTING TRAINING/Capstone_Project/Credit_Card_Details.xlsx"));
  XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -76,13 +75,13 @@ public void insert_credit_card_details() throws SQLException, IOException
             stmt.execute(query);
         }
     }
+    System.out.println("Credit Card Details Inserted Successfully");
     logger.info("Credit Card Details Inserted Successfully");
 }
 @Test(priority = 2)
 public void insert_credit_card_and_pan() throws SQLException, IOException
 {
-    System.out.println("Insert Credit Card with Pan Validation!!");
-    //connection = DriverManager.getConnection(url,user,password);
+    System.out.println("Inserting Credit Card & Pan Details in DB.");
     Statement stmt = connection.createStatement();
     FileInputStream fis = new FileInputStream(new File("C:/Users/anshumanm/OneDrive - Maveric Systems Limited/Desktop/API TESTING TRAINING/Capstone_Project/Credit_Card_No_and_Pan.xlsx"));
     XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -97,13 +96,13 @@ public void insert_credit_card_and_pan() throws SQLException, IOException
             stmt.execute(query);
         }
     }
+    System.out.println("Credit Card & Pan Details Inserted Successfully");
     logger.info("Credit Card & Pan Details Inserted Successfully");
 }
 @Test(priority = 3)
 public void validate_credit_card_details() throws SQLException, IOException
 {
     System.out.println("Credit Card Valdiation starts!!");
-    //connection = DriverManager.getConnection(url,user,password);
     Statement stmt = connection.createStatement();
     Statement stmt2 = connection.createStatement();
     String post_url = "https://api.restful-api.dev/objects";
@@ -212,11 +211,12 @@ public void validate_credit_card_details() throws SQLException, IOException
           }
         }
     }
+               System.out.println("Credit Card Validation completed.");
 }
 @AfterClass
 public void report_generation()
     {
-        System.out.println("All Tests Executed. Report is generated");
+        System.out.println("All Tests Executed. Extent Report is generated");
         extent.flush();
     }
 }

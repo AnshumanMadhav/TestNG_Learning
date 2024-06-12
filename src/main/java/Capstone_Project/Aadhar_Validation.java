@@ -46,7 +46,6 @@ public class Aadhar_Validation
   public void insert_records() throws IOException, SQLException
   {
       System.out.println("Aadhar Insert Records Validation!!");
-      //connection = DriverManager.getConnection(url,user,password);
       Statement stmt = connection.createStatement();
       FileInputStream fis = new FileInputStream(new File("C:/Users/anshumanm/OneDrive - Maveric Systems Limited/Desktop/API TESTING TRAINING/Capstone_Project/Aadhar_Details.xlsx"));
       XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -74,7 +73,6 @@ public class Aadhar_Validation
       {
           System.out.println("Aadhar Finder Test Starts!!");
           String test_aadhar = Read_Property_File_Data.read_properties("aadhar_no");
-          //connection = DriverManager.getConnection(url,user,password);
           Statement stmt =connection.createStatement();
           ResultSet result =stmt.executeQuery("select distinct Aadhar_No from maven_practise.aadhar_details;");
           ArrayList<String> aadhar_nos = new ArrayList<>();
@@ -103,7 +101,6 @@ public class Aadhar_Validation
 {
     try
     {
-        //connection = DriverManager.getConnection(url,user,password);
         String post_url = "https://reqres.in/api/users";
         SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-dd");
         Statement stmt =connection.createStatement();
@@ -120,6 +117,7 @@ public class Aadhar_Validation
             // Sending DB Values to Post Request Body
             String post_request_body = aadhar_details(firstname_db,lastname_db,aadhar_db,address_db,phone_db);
             post_aadhar_response = given().contentType(ContentType.JSON).body(post_request_body).when().post(post_url);
+            System.out.println(post_aadhar_response.body().asString());
 
             // Storing Values from Post Response
             String first_name_api = post_aadhar_response.getBody().jsonPath().getString("Fname");
