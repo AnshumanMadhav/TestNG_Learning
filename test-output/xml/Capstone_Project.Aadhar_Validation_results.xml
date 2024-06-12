@@ -4,19 +4,19 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="3.664">
+           time="2.944">
     <properties></properties>
 
 
 
             <testcase
                 name="insert_records"
-                time="0.722"
+                time="0.571"
                 classname="Capstone_Project.Aadhar_Validation">
             </testcase>
             <testcase
                 name="aadhar_finder"
-                time="2.942"
+                time="2.373"
                 classname="Capstone_Project.Aadhar_Validation">
             </testcase>
 </testsuite>
