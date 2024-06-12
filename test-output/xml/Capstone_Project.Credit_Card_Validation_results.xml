@@ -4,24 +4,24 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="67.095">
+           time="106.154">
     <properties></properties>
 
 
 
             <testcase
-                name="validate_credit_card_details"
-                time="66.702"
-                classname="Capstone_Project.Credit_Card_Validation">
-            </testcase>
-            <testcase
                 name="insert_credit_card_details"
-                time="0.225"
+                time="0.227"
                 classname="Capstone_Project.Credit_Card_Validation">
             </testcase>
             <testcase
                 name="insert_credit_card_and_pan"
-                time="0.168"
+                time="0.198"
+                classname="Capstone_Project.Credit_Card_Validation">
+            </testcase>
+            <testcase
+                name="validate_credit_card_details"
+                time="105.729"
                 classname="Capstone_Project.Credit_Card_Validation">
             </testcase>
 </testsuite>
