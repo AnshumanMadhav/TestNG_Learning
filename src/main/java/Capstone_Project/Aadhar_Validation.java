@@ -1,6 +1,10 @@
 package Capstone_Project;
 
 import My_Learning.Read_Property_File_Data;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.poi.ss.usermodel.Row;
@@ -35,10 +39,23 @@ public class Aadhar_Validation
   String url = read_properties("url");
   String user = read_properties("user");
   String password = read_properties("password");
+  private ExtentSparkReporter spark;
+  private ExtentReports extent;
+  private ExtentTest logger;
 
   @BeforeClass
-  public void connect_to_db() throws SQLException
+  public void connect_to_db_and_report_setup() throws SQLException
   {
+    extent = new ExtentReports();
+    spark = new ExtentSparkReporter(System.getProperty("user.dir")+"/Report/Aadhar_Details_Validation.html");
+    spark.config().setDocumentTitle("Aadhar Details Validation");
+    spark.config().setReportName("Aadhar_Details_Validation_Report");
+    spark.config().setTheme(Theme.DARK);
+    logger = extent.createTest("Validate Aadhar Details");
+    extent.attachReporter(spark);
+    extent.setSystemInfo("QA_Name","Anshuman");
+    extent.setSystemInfo("Build_Name","Capstone Project");
+    extent.setSystemInfo("Environment_Name","QA");
     connection = DriverManager.getConnection(url,user,password);
     System.out.println("DB Connection Established!");
   }
@@ -61,7 +78,7 @@ public class Aadhar_Validation
               long phone_no = (long) row.getCell(4).getNumericCellValue();
               String query = "insert into maven_practise.aadhar_details values (\""+Fname+"\",\""+Lname+"\","+aadhar_no+",\""+address+"\","+phone_no+")";
               stmt.execute(query);
-              Reporter.log("Values: (\""+Fname+"\",\""+Lname+"\","+aadhar_no+",\""+address+"\","+phone_no+") Inserted Successfully in table");
+              logger.info("Values: (\""+Fname+"\",\""+Lname+"\","+aadhar_no+",\""+address+"\","+phone_no+") Inserted Successfully in table");
           }
       }
       System.out.println("Records Inserted Successfully");
@@ -83,13 +100,13 @@ public class Aadhar_Validation
           if (aadhar_nos.contains(test_aadhar))
           {
               System.out.println("Aadhar Exists");
-              Reporter.log("Aadhar Number: "+test_aadhar+ " is a valid Aadhar." );
+              logger.info("Aadhar Number: "+test_aadhar+ " is a valid Aadhar." );
               get_aadhar_details(test_aadhar);
           }
           else
           {
               System.out.println("Aadhar does not Exists");
-              Reporter.log("Aadhar Number: "+test_aadhar+ " is an invalid Aadhar.",true);
+              logger.info("Aadhar Number: "+test_aadhar+ " is an invalid Aadhar.");
           }
       }
       catch (Exception e)
@@ -135,18 +152,54 @@ public class Aadhar_Validation
             Assert.assertEquals(address_db,address_api);
             Assert.assertEquals(phone_db,phone_api);
 
-            Reporter.log("For the field First Name==> DB value: " + firstname_db + " API Value: " + first_name_api+" || Value matching.");
-            Reporter.log("For the field Last Name==> DB value: " + lastname_db + " API Value: " + last_name_api+" || Value matching.");
-            Reporter.log("For the field Aadhar No==> DB value: " + aadhar_db + " API Value: " + aadhar_api+" || Value matching.");
-            Reporter.log("For the field Address==> DB value: " + address_db + " API Value: " + address_api+" || Value matching.");
-            Reporter.log("For the field Phone No==> DB value: " + phone_db + " API Value: " + phone_api+" || Value matching.");
+            // Validating Post Response against DB Values
+            if(firstname_db.matches(first_name_api))
+            {
+              logger.pass("For the field First Name==> DB value: " + firstname_db + " API Value: " + first_name_api+" || Value matching.");
+            }
+            else
+            {
+              logger.fail("For the field First Name==> DB value: " + firstname_db + " API Value: " + first_name_api+" || Value not matching.");
+            }
+            if(lastname_db.matches(last_name_api))
+            {
+              logger.pass("For the field Last Name==> DB value: " + lastname_db + " API Value: " + last_name_api+" || Value matching.");
+            }
+            else
+            {
+              logger.fail("For the field Last Name==> DB value: " + lastname_db + " API Value: " + last_name_api+" || Value not matching.");
+            }
+            if(aadhar_db==aadhar_api)
+            {
+               logger.pass("For the field Aadhar No==> DB value: " + aadhar_db + " API Value: " + aadhar_api+" || Value matching.");
+            }
+            else
+            {
+                logger.fail("For the field Aadhar No==> DB value: " + aadhar_db + " API Value: " + aadhar_api+" || Value not matching.");
+            }
+            if(address_db.equals(address_api))
+            {
+                logger.pass("For the field Address==> DB value: " + address_db + " API Value: " + address_api+" || Value matching.");
+            }
+            else
+            {
+                logger.fail("For the field Address==> DB value: " + address_db + " API Value: " + address_api+" || Value not matching.");
+            }
+            if(phone_db==phone_api)
+            {
+                logger.pass("For the field Phone No==> DB value: " + phone_db + " API Value: " + phone_api+" || Value matching.");
+            }
+            else
+            {
+                logger.fail("For the field Phone No==> DB value: " + phone_db + " API Value: " + phone_api+" || Value not matching.");
+            }
 
             //Validating if Account ID and CreatedAt Fields are not empty
             Assert.assertNotNull(id_api);
             Assert.assertNotNull(created_at_api);
 
-            Reporter.log("For the field id ==> API Value: " +id_api);
-            Reporter.log("For the createdAt==> API Value: " +created_at_api);
+            logger.info("For the field id ==> API Value: " +id_api);
+            logger.info("For the createdAt==> API Value: " +created_at_api);
 
             //Validating if Account ID is numeric
             Assert.assertTrue(id_api.matches("[0-9]+"));
@@ -155,7 +208,7 @@ public class Aadhar_Validation
             Date date = new Date();
             String current_date = sf.format(date);
             Assert.assertEquals(current_date,created_at_api);
-            Reporter.log("For the field createdAt==> Current-Date: " + current_date + " API Value: " + created_at_api+" || Value matching.");
+            logger.info("For the field createdAt==> Current-Date: " + current_date + " API Value: " + created_at_api+" || Value matching.");
         }
     }
     catch (Exception e)
@@ -170,9 +223,10 @@ public class Aadhar_Validation
  }
 
  @AfterClass
- public void validation_end_message()
+ public void validation_report_generation()
  {
-   System.out.println("Aadhar Validation Completed!");
+   System.out.println("Aadhar Validation Completed! Extent Report Generated");
+   extent.flush();
  }
 }
 
