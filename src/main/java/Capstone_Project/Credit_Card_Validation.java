@@ -206,8 +206,6 @@ public void validate_credit_card_details() throws SQLException, IOException
                  logger.fail("Credit Card No:" +credit_card_no_pan_db+ " is not mapped with any Pan Card.");
                }
               }
-
-
           }
         }
     }

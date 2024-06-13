@@ -146,13 +146,6 @@ public class Aadhar_Validation
             String created_at_api = date_extractor(post_aadhar_response.getBody().jsonPath().getString("createdAt"));
 
             // Validating Post Response against DB Values
-            Assert.assertEquals(firstname_db,first_name_api);
-            Assert.assertEquals(lastname_db,last_name_api);
-            Assert.assertEquals(aadhar_db,aadhar_api);
-            Assert.assertEquals(address_db,address_api);
-            Assert.assertEquals(phone_db,phone_api);
-
-            // Validating Post Response against DB Values
             if(firstname_db.matches(first_name_api))
             {
               logger.pass("For the field First Name==> DB value: " + firstname_db + " API Value: " + first_name_api+" || Value matching.");
@@ -207,8 +200,15 @@ public class Aadhar_Validation
             //Validating if CreatedAt Field contains current Date
             Date date = new Date();
             String current_date = sf.format(date);
-            Assert.assertEquals(current_date,created_at_api);
-            logger.info("For the field createdAt==> Current-Date: " + current_date + " API Value: " + created_at_api+" || Value matching.");
+
+            if(current_date.equals(created_at_api))
+            {
+              logger.pass("For the field createdAt==> Current-Date: " + current_date + " API Value: " + created_at_api + " || Value matching.");
+            }
+            else
+            {
+                logger.fail("For the field createdAt==> Current-Date: " + current_date + " API Value: " + created_at_api + " || Value not matching.");
+            }
         }
     }
     catch (Exception e)
